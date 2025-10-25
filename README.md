@@ -7,3 +7,5 @@ Andrea Alexander
 Yiqiong Shi
 Salwa Sayed
 
+# Framework :
+Django https://docs.djangoproject.com/en/5.2/
