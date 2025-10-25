@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+import random
 
 # HOME PAGE
 # DESCRIPTION: Select filters for event ideas
@@ -9,9 +9,14 @@ from django.http import HttpResponse
 #
 #    #response = render(request, 'planner/home.html', context_dict)
 #    return request
+recommendations = [
+    "Bar","Cinema","Museum","Park","Restaurant","Theatre","Concert","Bowling","Club","Cafe"
+]
 
 def home(request):
-    return HttpResponse("Rango says hey there partner!")
+    results = [random.choice(recommendations) for _ in range(3)]
+    return render(request, 'planner/home.html', {'results': results})
+
 
 
 # SLOT MACHINE PAGE
