@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <meta charset="UTF-8">
+        <title>Slot Machine</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+        <style>
+            body{ background: #1c1c1c; text-align: center; padding-top: 80px; justify-content: center;}
+            h1 { margin-bottom: 40px; font-size: 2.5rem;}
+            .reel{width: 180px; height: 100px; background: white; border: 3px solid #1b1188; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; font-weight: bold;}
+            .slot-machine{ display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; align-items: center;}
+            .result{ margin-top: 30px; font-size: 1.5rem; font-weight: bold; }
+            .handle { width: 40px;height: 180px;background: #1b1987;border-radius: 20px;position: relative;right:-60px;cursor: pointer;top:-150px;transition: transform 0.2s;}
+            .handle-ball { width: 50px;height: 50px;background: #2831a7;border: 3px solid #fff;border-radius: 50%;position: absolute;right:-60px;top: -25px;left: -5px;box-shadow: 0 3px 8px rgba(0,0,0,0.3); }
+            .pulling { transform: rotate(20deg); }
+            .slot-container { position: relative;display: inline-block; }
+
+        </style>
+    </head>
+    <body>
+    <h1>Ideas Slot Machine</h1>
+    <div class ="slot-container">
+    <div class="slot-machine">
+        <div class="reel" id="reel1"></div>
+        <div class="reel" id="reel2"></div>
+        <div class="reel" id="reel3"></div>
+    </div>  
+    <div class="handle" id="handle" style="float:right;">
+            <div class="handle-ball"></div>
+    </div>  
+    </div>
+
+
+    <br>
+    <br>
+    
+    <a href="{% url 'home' %}" id="backBtn" class="btn btn-primary btn-lg">Back</a>
+    <div id="result" class="result"></div>
+
+
+    {{ EVENTS|json_script:"events-data" }}
+
+    <script>
+        const events = JSON.parse(document.getElementById('events-data').textContent);
+
+        const reel1 = document.getElementById("reel1");
+        const reel2 = document.getElementById("reel2");
+        const reel3 = document.getElementById("reel3");
+        const button = document.getElementById("slotMachineBtn");
+        const result = document.getElementById("result");
+
+
+       handle.addEventListener("click", function(){
+            handle.classList.add("pulling");
+            setTimeout(() => {
+                handle.classList.remove("pulling");
+            }, 200);
+
+            let spins = 20;
+            let count = 0;
+            function spin(){
+                if (count < spins){
+                    reel1.textContent = events[Math.floor(Math.random() * events.length)].name;
+                    reel2.textContent = events[Math.floor(Math.random() * events.length)].name;
+                    reel3.textContent = events[Math.floor(Math.random() * events.length)].name;
+
+                    count++;
+                    setTimeout(spin, 100);
+                }
+                else{
+                    const finalEvent = events[Math.floor(Math.random() * events.length)];
+                    reel1.textContent = finalEvent.name;
+                    reel2.textContent = finalEvent.name;
+                    reel3.textContent = finalEvent.name;
+                    result.textContent = "Your plan is: " + finalEvent.name + " -" + finalEvent.desc;
+                }
+            }
+            spin();
+        });
+
+    </script>
+    </body>
+</html>

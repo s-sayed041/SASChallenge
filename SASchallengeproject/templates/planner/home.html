@@ -1,16 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Event Planner</title>
-    </head>
 
-    <body>
-        <h1>Welcome to the Event Planner</h1>
-        <p>Select your filters to find the perfect event idea!</p>
-    </body>
+<html>
+<head>
+    <title>Office Night Out Planner </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { background: #1c1c1c; color: #f8f9fa; }
+        .form-container { background: #2c2c2c; padding: 30px; border-radius: 15px; }
+        h1 { color: #071cff; }
+        .btn-custom { background-color: #070fff; color: #000; font-weight: bold; }
+        .lead { color: #ddd; }
+        .logo { display: block; margin: 20px auto; width: 150px; }
+    </style>
+</head>
+<body class="p-5 text-center">
 
-    <a href="/slotmachine/">Slot Machine!!</a>
+    <h1 class="mb-4">Office Night Out Planner </h1>
+    <p class="lead mb-5">Select your preferences</p>
 
+   <form method="get" action="/results/" class="container">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label>Occasion</label>
+                <input type="text" name="occasion" class="form-control" placeholder="Any">
+            </div>
+            <div class="col-md-2">
+                <label>Mood</label>
+                <select name="mood" class="form-select">
+                    <option value="">Any</option>
+                    <option value="Fun">Fun</option>
+                    <option value="Chill">Chill</option>
+                    <option value="Party">Party</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label>Budget</label>
+                <select name="budget" class="form-select">
+                    <option value="">Any</option>
+                    <option value="£">£</option>
+                    <option value="££">££</option>
+                    <option value="£££">£££</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label>Group Size</label>
+                <select name="group" class="form-select">
+                    <option value="">Any</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label>Activity Type</label>
+                <select name="activity_type" class="form-select">
+                    <option value="">Any</option>
+                    <option value="Music">Music</option>
+                    <option value="Food & Drink">Food & Drink</option>
+                    <option value="Performing & Visual Arts">Performing & Visual Arts</option>
+                    <option value="Activity">Activity</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary btn-lg">Show Top 5</button>
+        </div>
+        <br>
+        <div>
+            <button type="submit" name="show_all" value="true" class="btn btn-secondary btn-lg">Show All</button>
+        </div>
+    </form>
+    <br>
+    <div class="text-center mt-3">
+        <a href="{% url 'slotmachine' %}" class="btn btn-success btn-lg">Randomize?</a>
+
+    </div>
+
+</body>
 </html>
