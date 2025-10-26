@@ -1,6 +1,6 @@
 # 'Do You Have The GUTS' Hackathon - SAS Challenge
 
-# Team :
+# Team 47:
 Fatima Kamran
 Ozias Silitonga
 Andrea Alexander
