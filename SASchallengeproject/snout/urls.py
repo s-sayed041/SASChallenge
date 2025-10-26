@@ -20,7 +20,8 @@ from planner import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('slotmachine/', views.slotmachine, name='slotmachine'),
     path('admin/', admin.site.urls),
     path('', include('planner.urls')), 
+    path('slot/', views.slotmachine, name='slotmachine'),
+
 ]
