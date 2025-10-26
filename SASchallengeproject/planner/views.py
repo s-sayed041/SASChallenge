@@ -19,8 +19,6 @@ def home(request):
 # SLOT MACHINE PAGE
 # DESCRIPTION: Randomly selects event ideas from given filters
 def slotmachine(request):
-    results = [random.choice(recommendations) for _ in range(3)]
     context_dict = {}
-    context_dict['results'] = results
     response = render(request, 'planner/slotmachine.html', context=context_dict)
     return response
